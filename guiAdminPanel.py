@@ -1,9 +1,15 @@
 from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk,Image
+import guiAdminFuncs
 
 
 import time
+
+def regBtn():
+    registerBtn = Button(frameLogin, text='Register', font='Calbri 11 bold', padx=10, pady=10)
+    registerBtn.place(relx=0.11, rely=0.65, relwidth=0.30, relheight=0.05)
+    registerBtn.config(command=guiAdminFuncs.plsReg)
 
 def authGet():
     username = usernameEntry.get()
@@ -15,19 +21,17 @@ def authGet():
             print('LOG: {} user giriş yaptı.'.format(username))
             messagebox.showinfo("Login Successfull", "Welcome")
         else:
-            if password != '123':
-                if username != 'Furkan' or username != 'Muhammed':
-                    logMsg.config(foreground='red')
-                    logMsg.config(text='Username ve Password hatalı!')
-                elif username != 'Furkan' or username != 'Muhammed':
-                    logMsg.config(foreground='red')
-                    logMsg.config(text='Username Hatalı!')
-                else:
-                    logMsg.config(foreground='red')
-                    logMsg.config(text='Password hatalı!')
-                print('LOG: {} user force login.'.format(username))
-        usernameEntry.delete(0, END)
-        passEntry.delete(0, END)
+            logMsg.config(foreground='red')
+            logMsg.config(text='Password hatalı!')
+            print('LOG: {} user force login.'.format(username))
+    else:
+        logMsg.config(foreground='red')
+        logMsg.config(text='User not found')
+        regBtn()
+        print('LOG: Kayıtsız kullanıcı giriş denemesi.')
+    usernameEntry.delete(0, END)
+    passEntry.delete(0, END)
+
 
 window = Tk()
 window.title("MF Society Admin Panel")
@@ -62,8 +66,9 @@ passLabel.pack(side=LEFT)
 passEntry = Entry(passFrame, bd=2, font='Calbri 8 bold')
 passEntry.place(relx=0.3, rely=0.1, relheight=0.8, relwidth=0.69)
 
-loginBottom = Button(frameLogin, text='Login', font='Calbri 11 bold', padx=10, pady=10, command= authGet)
-loginBottom.place(relx=0.44, rely=0.65, relwidth=0.35, relheight=0.05)
+loginBtn = Button(frameLogin, text='Login', font='Calbri 11 bold', padx=10, pady=10, command= authGet)
+loginBtn.place(relx=0.44, rely=0.65, relwidth=0.35, relheight=0.05)
+
 
 logMsg = Label(frameBG, text='', bg='#313335', font='Calbri 10 bold', foreground='red')
 logMsg.place(relx=0.3, rely=0.7, relwidth=0.4, relheight=0.05)
@@ -73,5 +78,7 @@ image2 = ImageTk.PhotoImage(image1)
 
 labelimg= Label(image=image2,border=0, bg='#313335', justify=CENTER)
 labelimg.place(relx=0.25, rely=0.25, relwidth=0.5, relheight=0.2)
+
+
 
 window.mainloop()

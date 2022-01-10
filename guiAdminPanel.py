@@ -2,8 +2,6 @@ from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk,Image
 import guiAdminFuncs
-
-
 import time
 
 def regBtn():
@@ -12,27 +10,46 @@ def regBtn():
     registerBtn.config(command=guiAdminFuncs.plsReg)
 
 def authGet():
+    users = [('username' ,'password'),('Furkan', '123'), ('ahmet', '1234'), ('mf', '1235')]
+
+    userC = len(users)
+
     username = usernameEntry.get()
     password = passEntry.get()
-    if username == 'Furkan' or username == 'Muhammed':
-        if password == '123':
-            logMsg.config(foreground='green')
-            logMsg.config(text='Giriş Başarılı')
-            print('LOG: {} user giriş yaptı.'.format(username))
-            messagebox.showinfo("Login Successfull", "Welcome")
+    Loginned = False
+    userFound = True
+    passTrue = True
+    for i in range(userC):
+        if username == users[i][0]:
+            if password == users[i][1]:
+                logMsg.config(foreground='green')
+                logMsg.config(text='Giriş Başarılı')
+                messagebox.showinfo("Login Successfull", "{} Welcome".format(username))
+                Loginned = True
+                break
+            else:
+                logMsg.config(foreground='red')
+                logMsg.config(text='Password Hatalı')
+                passTrue = False
+                break
         else:
             logMsg.config(foreground='red')
-            logMsg.config(text='Password hatalı!')
-            print('LOG: {} user force login.'.format(username))
-    else:
-        logMsg.config(foreground='red')
-        logMsg.config(text='User not found')
-        regBtn()
-        print('LOG: Kayıtsız kullanıcı giriş denemesi.')
+            logMsg.config(text='Kullanıcı Hatalı')
+            regBtn()
+            userFound = False
+            
+        i + 1
+        
+    if Loginned == True:
+        print('LOG: {}  giriş yaptı '.format(username))
+    elif passTrue == False:
+        print(f'LOG: {username} şifreyi hatalı girdi. Girilen şifre: {password}, Doğru şifre: {users[i][1]}')
+    elif userFound == False:
+        print('LOG: Kayıtsız kullanıcı adı girildi.')
+        
     usernameEntry.delete(0, END)
     passEntry.delete(0, END)
-
-
+    
 window = Tk()
 window.title("MF Society Admin Panel")
 window.geometry("600x800")
@@ -78,7 +95,5 @@ image2 = ImageTk.PhotoImage(image1)
 
 labelimg= Label(image=image2,border=0, bg='#313335', justify=CENTER)
 labelimg.place(relx=0.25, rely=0.25, relwidth=0.5, relheight=0.2)
-
-
 
 window.mainloop()

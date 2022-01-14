@@ -1,0 +1,11 @@
+REGISTER CODES:
+
+#REGCODExR0 - girilen şifreler eşleşmedi
+#REGCODExR1 - girilen şifre 6 karakterden daha kısa
+#REGCODExR2 - girilen kullanıcı adı database'de zaten kayıtlı.
+
+LOGIN CODE:
+
+LOGCODExS0
+LOGCODExP1
+LOGCODExU1

@@ -1,0 +1,3 @@
+LoginLOG: [Fri Jan 14 20:13:24 2022] Furkan þifreyi hatalý girdi. Girilen þifre: 123, Doðru þifre: LOGCODExP1
+LoginLOG: [Fri Jan 14 20:13:24 2022] Furkan giriþ yaptý LOGCODExS0
+LoginLOG: [Fri Jan 14 20:22:47 2022] Furkan þifreyi hatalý girdi. Girilen þifre: 123123, Doðru þifre: LOGCODExP1

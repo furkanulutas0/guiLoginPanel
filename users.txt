@@ -1,5 +1,1 @@
-Furkan#furkan54#furkank@gmail.com
-admin#admin1#admin@gmail.com
-Aasdasd#asdasd#fasdsa
-tester#asdasd#aasdasd
-furkanasd#furkan13#furkannnn
+username#password#email@gmail.com
